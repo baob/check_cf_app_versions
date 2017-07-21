@@ -1,0 +1,2 @@
+defmodule CheckAppVersions do
+end
