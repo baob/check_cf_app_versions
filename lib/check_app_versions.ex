@@ -12,6 +12,9 @@ defmodule CheckAppVersions do
     IO.puts "Live   #{options[:live]}"
     IO.puts "Test   #{options[:test]}"
     IO.puts "About to process ..."
+
+    Dotenv.load
+    { :ok, github_token } = System.get_env() |> Map.fetch("GITHUB_TOKEN")
   end
 
   defp parse_args(args) do
