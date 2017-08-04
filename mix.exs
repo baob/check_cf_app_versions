@@ -42,7 +42,8 @@ defmodule CheckAppVersions.Mixfile do
   def deps do
     [
       {:httpoison, "~> 0.12"},
-      {:dotenv, "~> 2.0.0"}
+      {:dotenv, "~> 2.0.0"},
+      {:poison, "~> 3.1"}
     ]
   end
 end
