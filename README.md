@@ -1,24 +1,32 @@
 # CheckAppVersions
 
-**TODO: Add description**
+Compare git revisions of running apps to latest master in git repo.
 
-## Installation
+A WORK IN PROGRESS !
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+## Assumptions:
 
-  1. Add `check_app_versions` to your list of dependencies in `mix.exs`:
+Repo is on github, token for API is known.
 
-    ```elixir
-    def deps do
-      [{:check_app_versions, "~> 0.1.0"}]
-    end
-    ```
+Apps respond to an endpoint /internal/version which returns json
+including latest git revision.
 
-  2. Ensure `check_app_versions` is started before your application:
+## Running the script
 
-    ```elixir
-    def application do
-      [applications: [:check_app_versions]]
-    end
-    ```
+    $ ./check_app_versions --github http://github.com/someuser/somerepo  \
+    >                      --live http://localhost:3000 \
+    >                      --live http://localhost:3001
 
+## Development
+
+### Compile standalone script
+
+    mix escript.build
+
+### Test (when tests are written)
+
+    mix test
+
+### REPL
+
+    iex
