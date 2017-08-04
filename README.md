@@ -29,4 +29,4 @@ including latest git revision.
 
 ### REPL
 
-    iex
+    iex -S mix
