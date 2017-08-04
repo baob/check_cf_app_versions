@@ -21,6 +21,17 @@ defmodule CheckAppVersions do
 
     test_revision = revision_from_app(options[:test])
     IO.puts "Test revision = #{test_revision}"
+
+    master_revision = "blurdy" # TODO: actually query github API
+
+    alert_on_mismatch(:live, live_revision, master_revision)
+    alert_on_mismatch(:test, test_revision, master_revision)
+  end
+
+  defp alert_on_mismatch(environment, app_revision, master_revision) do
+    if app_revision != master_revision do
+      IO.puts "#{environment} version does not match master"
+    end
   end
 
   defp parse_args(args) do
