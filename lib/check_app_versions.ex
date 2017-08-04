@@ -15,6 +15,12 @@ defmodule CheckAppVersions do
 
     Dotenv.load
     { :ok, github_token } = System.get_env() |> Map.fetch("GITHUB_TOKEN")
+
+    live_revision = revision_from_app(options[:live])
+    IO.puts "Live revision = #{live_revision}"
+
+    test_revision = revision_from_app(options[:test])
+    IO.puts "Test revision = #{test_revision}"
   end
 
   defp parse_args(args) do
@@ -25,4 +31,12 @@ defmodule CheckAppVersions do
     )
     options
   end
+
+  defp revision_from_app(app_host) do
+    full_url = "#{app_host}/internal/version"
+    resp = HTTPoison.get! full_url
+    {:ok, revision} = resp.body |> Poison.decode! |> Map.fetch("revision")
+    revision
+  end
+
 end
